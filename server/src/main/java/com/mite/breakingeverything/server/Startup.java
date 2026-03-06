@@ -1,16 +1,15 @@
 package com.mite.breakingeverything.server;
 
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.util.logging.Logger;
 
 /**
  * Startup class for MiTE Breaking Everything dedicated server.
  * Handles initialization of server directories and environment setup.
  */
 public class Startup {
+
+    private static final Logger F = Logger.getLogger("Minecraft-Server");
 
     private static final String MITE_FOLDER = "MiTE";
     private static final String WORLDS_FOLDER = "worlds";
@@ -60,6 +59,9 @@ public class Startup {
      * @param args Command line arguments
      */
     public static void main(String[] args) {
+        // Print the startup message as done in BES via this.F.a
+        F.info("Starting not a integrated minecraft server version 1.6.4");
+
         System.out.println("Starting MiTE Breaking Everything 0.9.0 dedicated server...");
 
         // Initialize directories
@@ -69,6 +71,8 @@ public class Startup {
         // TODO: Patch vanilla server jar with MiTE hooks
         // TODO: Launch the patched server
 
-        System.out.println("MiTE server startup complete. Ready for connections.");
+        // Note: The "Done!" message will be printed by the vanilla server startup process
+        // after the patched server jar is launched and fully initialized
+        System.out.println("MiTE server preparation complete. Launching patched server...");
     }
 }
