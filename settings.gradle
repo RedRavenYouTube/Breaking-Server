@@ -12,5 +12,4 @@ plugins {
 }
 
 rootProject.name = 'Breaking-Server'
-include('app')
 include('server')
