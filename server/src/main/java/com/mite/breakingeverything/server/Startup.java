@@ -55,24 +55,30 @@ public class Startup {
     }
 
     /**
-     * Main method for server startup.
-     * @param args Command line arguments
+     * Called by any launcher to perform server startup work.
+     * Using a dedicated startServer method ensures the logic can be invoked
+     * programmatically (for example from a patcher or custom launcher).
      */
-    public static void main(String[] args) {
-        // Print the startup message as done in BES via this.F.a
-        F.info("Starting not a integrated minecraft server version 1.6.4");
+    public static void startServer() {
+        // log a custom MiTE startup notice; hosting services watch for this log entry
+        this.F.a("Starting MiTE Breaking Everything dedicated server v0.9.0");
 
-        System.out.println("Starting MiTE Breaking Everything 0.9.0 dedicated server...");
+        System.out.println("Initializing MiTE Breaking Everything 0.9.0...");
 
-        // Initialize directories
+        // set up folders used by the server
         initializeDirectories();
 
         // TODO: Load configuration
-        // TODO: Patch vanilla server jar with MiTE hooks
-        // TODO: Launch the patched server
+        // TODO: Apply MiTE transformations to a vanilla server jar
+        // TODO: Launch the patched vanilla server
 
-        // Note: The "Done!" message will be printed by the vanilla server startup process
-        // after the patched server jar is launched and fully initialized
-        System.out.println("MiTE server preparation complete. Launching patched server...");
+        // after the patched server launches, the vanilla code will emit "Done!" when ready
+        System.out.println("Preparation finished, launching server jar...");
+    }
+    /**
+     * Entry point for command-line launching; delegates to startServer.
+     */
+    public static void main(String[] args) {
+        startServer();
     }
 }
